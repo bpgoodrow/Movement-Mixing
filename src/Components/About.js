@@ -15,7 +15,6 @@ import styled from "styled-components";
 
 const AboutWrapper = styled.div`
   margin-bottom: 100px;
-  font-size: 1.5rem;
 `
 
 const StyledTextArea = styled.textarea`
@@ -134,7 +133,7 @@ const About = () => {
       {/* {loading ? <h1>Loading...</h1> : null} */}
       {about.map((about) => (
         <div key={about.id}>
-          <p>{about.desc}</p>
+          <h1>{about.desc}</h1>
         </div>
       ))}
     </AboutWrapper>

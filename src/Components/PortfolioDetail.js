@@ -23,11 +23,15 @@ const DetailContainer = styled.div`
 
 const InfoContainer = styled.div`
   display: flex;
-  font-size: 2em;
+  font-size: 2rem;
+  @media(max-width: 1600px) {
+    font-size: 2vw;
+  }
   margin-left: 10%;
   flex-direction: column;
   @media (max-width: 999px) {
     margin-left: 0px;
+    font-size: 1.5em;
   }
   @media (max-width: 699px) {
     font-size: 1.5em;

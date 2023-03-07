@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { CgMenu, CgClose } from 'react-icons/cg';
-import { TfiClose, TfiMenu } from 'react-icons/tfi'
+import { TfiClose } from 'react-icons/tfi'
 import { RxHamburgerMenu } from 'react-icons/rx'
 
   const HeaderContainer = styled.div`
@@ -15,6 +14,19 @@ import { RxHamburgerMenu } from 'react-icons/rx'
     text-decoration: none;
     cursor: pointer;
     border-bottom: ${(props) => (props.homeActive ? 'solid white .5px' : 'none')};
+    &:hover {
+      border-bottom: solid white .5px;
+    }
+    @media (max-width: 405px) {
+      margin: .55rem;
+    }
+  `;
+
+  const AboutLink = styled(NavLink)`
+    text-decoration: none;
+    margin-left: 1rem;
+    cursor: pointer;
+    border-bottom: ${(props) => (props.AboutActive ? 'solid white .5px' : 'none')};
     &:hover {
       border-bottom: solid white .5px;
     }
@@ -78,7 +90,6 @@ import { RxHamburgerMenu } from 'react-icons/rx'
   `;
 
   const HamburgerToggle = styled.div`
-    
     width: 100%;
     display: flex;
     align-items: center;
@@ -114,6 +125,7 @@ const Header = ({ handleScroll }) => {
 
   const [toggle, setToggle] = useState(false);
   const [homeActive, setHomeActive] = useState(true);
+  const [aboutActive, setAboutActive] = useState(false);
   const [faqActive, setFaqActive] = useState(false);
   const [contactActive, setContactActive] = useState(false);
 
@@ -126,18 +138,28 @@ const Header = ({ handleScroll }) => {
 
   const handleHomeClick = () => {
     setHomeActive(true);
+    setAboutActive(false);
+    setFaqActive(false);
+    setContactActive(false);
+  }
+
+  const handleAboutClick = () => {
+    setAboutActive(true);
+    setHomeActive(false);
     setFaqActive(false);
     setContactActive(false);
   }
 
   const handleFaqClick = () => {
     setFaqActive(true);
+    setAboutActive(false);
     setHomeActive(false);
     setContactActive(false);
   }
 
   const handleContactClick = () => {
     setContactActive(true);
+    setAboutActive(false);
     setHomeActive(false);
     setFaqActive(false);
   }
@@ -152,6 +174,9 @@ const Header = ({ handleScroll }) => {
             <HomeLink to="/" onClick={handleHomeClick}homeActive={homeActive}>
               <StyledLink to="/">Home</StyledLink>
             </HomeLink>
+            <AboutLink to="/about" onClick={handleAboutClick}aboutActive={aboutActive}>
+              <StyledLink to="/about">About</StyledLink>
+            </AboutLink>
             <FaqLink to="/faq" onClick={handleFaqClick} faqActive={faqActive}>
               <StyledLink to="/faq">FAQ</StyledLink>
             </FaqLink>
@@ -170,6 +195,9 @@ const Header = ({ handleScroll }) => {
               <ContactLink onClick={handleContactClick} contactActive={contactActive}>
                 <StyledLink onClick={handleScroll}>Contact</StyledLink>
               </ContactLink>
+              <AboutLink to ="/about" onClick={handleAboutClick} aboutActive={aboutActive}>
+                <StyledLink to="/about">About</StyledLink>
+              </AboutLink>
               <HomeLink to="/" onClick={handleHomeClick}homeActive={homeActive}>
                 <StyledLink to="/">Home</StyledLink>
               </HomeLink>
@@ -181,5 +209,3 @@ const Header = ({ handleScroll }) => {
 }
 
 export default Header;
-
-// mobile nav animate slide from right to left

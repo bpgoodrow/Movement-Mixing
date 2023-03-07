@@ -4,6 +4,7 @@ import PortfolioDisplay from "./PortfolioDisplay";
 import PortfolioDetail from "./PortfolioDetail";
 import NewPortfolioForm from "./NewPortfolioForm";
 import EditPortfolioItemForm from "./EditPortfolioItemForm";
+import TextAnimation from "./TextAnimation";
 import { db, auth, storage } from './../firebase';
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -146,6 +147,7 @@ const PortfolioControl = () => {
         <PortfolioDisplay onPortfolioItemSelection=
         {handleChangingSelectedPortfolioItem} portfolioDisplay={portfolioDisplay}
         />
+        <TextAnimation/>
       </>
     }
     return (
@@ -183,6 +185,7 @@ const PortfolioControl = () => {
         <PortfolioDisplay onPortfolioItemSelection=
         {handleChangingSelectedPortfolioItem} portfolioDisplay={portfolioDisplay}
         />
+        <TextAnimation/>
       </>
     }
     return(
