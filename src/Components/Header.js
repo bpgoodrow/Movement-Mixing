@@ -26,7 +26,7 @@ import { RxHamburgerMenu } from 'react-icons/rx'
     text-decoration: none;
     margin-left: 1rem;
     cursor: pointer;
-    border-bottom: ${(props) => (props.AboutActive ? 'solid white .5px' : 'none')};
+    border-bottom: ${(props) => (props.aboutActive ? 'solid white .5px' : 'none')};
     &:hover {
       border-bottom: solid white .5px;
     }
@@ -74,7 +74,6 @@ import { RxHamburgerMenu } from 'react-icons/rx'
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
     @media (max-width: 700px) {
       display: none
     }
@@ -91,15 +90,15 @@ import { RxHamburgerMenu } from 'react-icons/rx'
 
   const HamburgerToggle = styled.div`
     width: 100%;
+    margin-top: 125px;
     display: flex;
     align-items: center;
     justify_content: center;
     flex-direction: row-reverse;
-    justify-content: end;
+    justify-content: space-around;
     position: absolute;
     z-index: 0;
     right: 0;
-    margin-right: 1%;
     overflow: hidden;
     @media (min-width: 699px) {
       display: none;
@@ -111,6 +110,12 @@ import { RxHamburgerMenu } from 'react-icons/rx'
     width: 250px;
     @media (max-width: 699px) {
       width: 100px;
+    }
+  `
+
+  const HamburgerContainer = styled.div`
+    @media (min-width: 699px) {
+      display: none;
     }
   `
   const HamburgerIcons = styled.div`
@@ -185,22 +190,25 @@ const Header = ({ handleScroll }) => {
             </ContactLink>
           </HeaderLinkContainer>
         </HeaderTitleAndLinksContainer>
+        <HamburgerContainer onClick={() => {setToggle(!toggle)}}>{ toggle ? close : open }</HamburgerContainer>
         <HamburgerToggle>
-          <div onClick={() => setToggle(!toggle)}>{ toggle ? close : open }</div>
+
           {toggle && (
             <>
-              <FaqLink to="/faq" onClick={handleFaqClick} faqActive={faqActive}>
-                <StyledLink to="/faq">FAQ</StyledLink>
-              </FaqLink>
-              <ContactLink onClick={handleContactClick} contactActive={contactActive}>
-                <StyledLink onClick={handleScroll}>Contact</StyledLink>
-              </ContactLink>
-              <AboutLink to ="/about" onClick={handleAboutClick} aboutActive={aboutActive}>
-                <StyledLink to="/about">About</StyledLink>
-              </AboutLink>
-              <HomeLink to="/" onClick={handleHomeClick}homeActive={homeActive}>
-                <StyledLink to="/">Home</StyledLink>
-              </HomeLink>
+
+                <FaqLink to="/faq" onClick={handleFaqClick} faqActive={faqActive}>
+                  <StyledLink to="/faq">FAQ</StyledLink>
+                </FaqLink>
+                <ContactLink onClick={handleContactClick} contactActive={contactActive}>
+                  <StyledLink onClick={handleScroll}>Contact</StyledLink>
+                </ContactLink>
+                <AboutLink to ="/about" onClick={handleAboutClick} aboutActive={aboutActive}>
+                  <StyledLink to="/about">About</StyledLink>
+                </AboutLink>
+                <HomeLink to="/" onClick={handleHomeClick}homeActive={homeActive}>
+                  <StyledLink to="/">Home</StyledLink>
+                </HomeLink>
+
             </>
           )}
         </HamburgerToggle>

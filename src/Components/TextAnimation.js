@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-const letter1 = [{ name: "F" }, { name: "$" }, { name: "%" }];
-const letter2 = [{name: "#"}, { name: "U" }, { name: "*"}];
-const letter3 = [{ name: "&"}, { name: "@"}, { name: "C"}];
-const letter4 = [{ name: "!"}, { name: "^"}, { name: "K"}];
+const letter1 = [{ name: "F" }, { name: "F" }, { name: "F" }, { name: "%" }, { name: "%" }];
+const letter2 = [{name: "#"}, { name: "%" }, { name: "@" }, { name: "U" }, { name: "*"}];
+const letter3 = [{ name: "&"}, { name: "&"}, { name: "&"}, { name: "#"}, { name: "C"}];
+const letter4 = [{ name: "!"}, { name: "$"}, { name: "!"}, { name: "K"}, { name: "K"}];
 
 const TextAnimation = () => {
   const [letterF, setLetterF] = useState(letter1[0]);
@@ -18,7 +18,7 @@ const TextAnimation = () => {
   useEffect(() => {
     const timerId1 = setInterval(
       () => setIndex((i) => (i + 1) % letter1.length),
-      2500
+      3000
     );
     return () => clearInterval(timerId1);
   }, []);
@@ -26,7 +26,7 @@ const TextAnimation = () => {
   useEffect (() => {
     const timerId2 = setInterval(
     () => setIndex2((i) => (i + 1) % letter2.length),
-    2000
+    3000
     );
     return () => clearInterval(timerId2);
   }, []);
@@ -42,7 +42,7 @@ const TextAnimation = () => {
   useEffect(() => {
     const timerId4 = setInterval(
       () => setIndex4((i) => (i + 1) % letter1.length),
-      2000
+      3000
     );
     return () => clearInterval(timerId4);
   }, []);
@@ -74,7 +74,11 @@ const TextAnimation = () => {
 
 const AnimationWrapper = styled.h1`
   display: flex;
+  margin-top: 30px;
   justify-content: flex-end;
+  @media(max-width: 699px){
+    font-size:1.5rem;
+  }
 `
 
 export default TextAnimation;
