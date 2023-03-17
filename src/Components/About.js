@@ -61,15 +61,6 @@ const About = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // const q = query(
-      // collectionRef,
-      //  where('owner', '==', currentUserId),
-      // where('desc', '==', 'about1') // does not need index
-      //  where('score', '<=', 100) // needs index  https://firebase.google.com/docs/firestore/query-data/indexing?authuser=1&hl=en
-      // orderBy('score', 'asc'), // be aware of limitations: https://firebase.google.com/docs/firestore/query-data/order-limit-data#limitations
-      // limit(1)
-    // );
-
     setLoading(true);
     const unsub = onSnapshot(collectionRef, (querySnapshot) => {
       const items = [];
@@ -82,7 +73,6 @@ const About = () => {
     return () => {
       unsub();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function addAbout() {
