@@ -161,7 +161,7 @@ width: 6rem;
 `
 
 const FaqWrapper = styled.div`
-  font-size: 1.5em;
+  font-size: 1.2rem;
 `
 
 const FaqItem = styled.div`

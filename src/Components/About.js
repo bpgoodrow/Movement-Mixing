@@ -15,6 +15,9 @@ import styled from "styled-components";
 
 const AboutWrapper = styled.div`
   margin-bottom: 100px;
+  @media (max-width: 699px) {
+    font-size: .75rem;
+  }
 `
 
 const StyledTextArea = styled.textarea`

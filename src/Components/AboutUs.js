@@ -8,7 +8,6 @@ import {
   deleteDoc,
   collection,
   serverTimestamp,
-  QuerySnapshot,
 } from 'firebase/firestore';
 import { db, auth } from './../firebase';
 import { v4 as uuidv4 } from 'uuid';
@@ -20,6 +19,7 @@ const AboutUs = () => {
   const [joshAbout, setJoshAbout] = useState([]);
   const [joshDesc, setJoshDesc] = useState('');
   const collectionRef = collection(db, 'alexAbout');
+  const collectionRef1 = collection(db, 'joshAbout');
 
   useEffect(() => {
     const unsub = onSnapshot(collectionRef, (querySnapshot) => {
@@ -28,6 +28,19 @@ const AboutUs = () => {
         items.push(doc.data());
       });
       setAlexAbout(items);
+    });
+    return () => {
+      unsub();
+    };
+  }, []);
+
+  useEffect(() => {
+    const unsub = onSnapshot(collectionRef1, (querySnapshot) => {
+      const items = [];
+      querySnapshot.forEach((doc) => {
+        items.push(doc.data());
+      });
+      setJoshAbout(items);
     });
     return () => {
       unsub();
@@ -49,10 +62,34 @@ const AboutUs = () => {
     }
   }
 
+  async function addJoshAbout() {
+    const newJoshAbout = {
+      joshDesc,
+      id: uuidv4(),
+      createdAt: serverTimestamp(),
+      lastUpdate: serverTimestamp(),
+    };
+    try {
+      const aboutJoshRef = doc(collectionRef1, newJoshAbout.id);
+      await setDoc(aboutJoshRef, newJoshAbout);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async function deleteAlexAbout(alexAbout) {
     try {
       const aboutAlexRef = doc(collectionRef, alexAbout.id);
       await deleteDoc(aboutAlexRef, aboutAlexRef);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function deleteJoshAbout(joshAbout) {
+    try {
+      const aboutJoshRef = doc(collectionRef1, joshAbout.id);
+      await deleteDoc(aboutJoshRef, aboutJoshRef);
     } catch (error) {
       console.error(error);
     }
@@ -65,18 +102,18 @@ const AboutUs = () => {
           <div>
             <img src="./portland.png" alt="Alex Portrait" title="Alex Portrait" />
           </div>
-          <AlexInfo>
             {alexAbout.map((alexAbout) => (
-              <div key={alexAbout.id}>
+              <AlexInfo key={alexAbout.id}>
                 {alexAbout.alexDesc}
-              </div>
+              </AlexInfo>
             ))}
-          </AlexInfo>
         </AboutAlexWrapper>
         <AboutJoshWrapper>
-          <JoshInfo>
-          Josh Blah Blah Blah ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </JoshInfo>
+          {joshAbout.map((joshAbout) => (
+            <JoshInfo key={joshAbout.id}>
+              {joshAbout.joshDesc}
+            </JoshInfo>
+          ))}
           <div>
             <img src="./portland.png" alt="Alex Portrait" title="Alex Portrait" />
           </div>
@@ -106,12 +143,23 @@ const AboutUs = () => {
             ))}
           </AlexInfo>
         </AboutAlexWrapper>
+        <AboutContainer>
+        <StyledTextArea value={joshDesc} placeholder={joshAbout.map((about) => (about.joshDesc))} onChange={(e) => setJoshDesc(e.target.value)} />
+            <StyledButton onClick={() => addJoshAbout()}>Submit</StyledButton>
+        </AboutContainer>
         <AboutJoshWrapper>
           <JoshInfo>
-          Josh Blah Blah Blah ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            {joshAbout.map((joshAbout) => (
+              <div key={joshAbout.id}>
+                {joshAbout.joshDesc}
+                <div>
+                  <StyledButton onClick={() => deleteJoshAbout(joshAbout)}>Delete</StyledButton>
+                </div>
+              </div>
+            ))}
           </JoshInfo>
           <div>
-            <img src="./portland.png" alt="Alex Portrait" title="Alex Portrait" />
+            <img src="./portland.png" alt="Josh Portrait" title="Josh Portrait" />
           </div>
         </AboutJoshWrapper>
         

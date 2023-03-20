@@ -47,7 +47,7 @@ const PortfolioItem = (props) => {
   <>
     <ImgContainer>
       <AlbumImage onClick = {() => props.whenPortfolioItemClicked(props.id)} src={props.albumCover} />
-      <AlbumInfo>{props.artistName} {props.albumName}</AlbumInfo>
+      <AlbumInfo>{props.artistName}<br/>{props.albumName}</AlbumInfo>
     </ImgContainer>
     </>
   )
