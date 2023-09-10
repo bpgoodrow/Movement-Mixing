@@ -11,7 +11,7 @@ const AppContainer = styled.div`
 
 const StyledApp = styled.div`
   max-width: 80%;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-left: 20%;
   margin-right: 20%;
   @media (max-width: 1800px) {

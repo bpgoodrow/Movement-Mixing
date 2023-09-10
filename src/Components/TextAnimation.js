@@ -18,7 +18,7 @@ const TextAnimation = () => {
   useEffect(() => {
     const timerId1 = setInterval(
       () => setIndex((i) => (i + 1) % letter1.length),
-      3000
+      1900
     );
     return () => clearInterval(timerId1);
   }, []);
@@ -26,7 +26,7 @@ const TextAnimation = () => {
   useEffect (() => {
     const timerId2 = setInterval(
     () => setIndex2((i) => (i + 1) % letter2.length),
-    3000
+    1900
     );
     return () => clearInterval(timerId2);
   }, []);
@@ -34,7 +34,7 @@ const TextAnimation = () => {
   useEffect(() => {
     const timerId3 = setInterval(
       () => setIndex3((i) => (i + 1) % letter3.length),
-      3000
+      1900
     );
     return () => clearInterval(timerId3);
   },[]);
@@ -42,7 +42,7 @@ const TextAnimation = () => {
   useEffect(() => {
     const timerId4 = setInterval(
       () => setIndex4((i) => (i + 1) % letter1.length),
-      3000
+      1900
     );
     return () => clearInterval(timerId4);
   }, []);

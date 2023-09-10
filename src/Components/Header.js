@@ -182,9 +182,9 @@ const Header = ({ handleScroll }) => {
             <AboutLink to="/about" onClick={handleAboutClick}aboutActive={aboutActive}>
               <StyledLink to="/about">About</StyledLink>
             </AboutLink>
-            <FaqLink to="/faq" onClick={handleFaqClick} faqActive={faqActive}>
+            {/* <FaqLink to="/faq" onClick={handleFaqClick} faqActive={faqActive}>
               <StyledLink to="/faq">FAQ</StyledLink>
-            </FaqLink>
+            </FaqLink> */}
             <ContactLink onClick={handleContactClick} contactActive={contactActive}>
               <StyledLink onClick={handleScroll}>Contact</StyledLink>
             </ContactLink>

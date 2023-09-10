@@ -44,8 +44,8 @@ const Contact = () => {
       </ContactInfo>
       <ContactLinks>
         <div>
-          <a href="https://www.instagram.com/" target="_blank"><AiOutlineInstagram color="white" size={35} style={{ marginRight: 10 }}/></a>
-          <a href="https://www.twitter.com/" target="_blank"><AiFillTwitterCircle color="white" size={35}/></a>
+          <a href="https://instagram.com/movementmixing?igshid=YmMyMTA2M2Y=/" target="_blank"><AiOutlineInstagram color="white" size={35} style={{ marginRight: 10 }}/></a>
+          <a href="https://twitter.com/movementmixing?s=21&t=crGrTD7puEc8YN4ZN0CCrA" target="_blank"><AiFillTwitterCircle color="white" size={35}/></a>
         </div>
         <StyledAnchor href="mailto:team@movementmixing.com">team@movementmixing.com</StyledAnchor>
       </ContactLinks>

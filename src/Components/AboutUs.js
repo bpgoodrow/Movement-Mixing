@@ -9,9 +9,10 @@ import {
   collection,
   serverTimestamp,
 } from 'firebase/firestore';
-import { db, auth } from './../firebase';
+import { db, auth, storage } from '../firebase';
+import { ref, uploadBytes, getDownloadURL, listAll, deleteObject, getStorage } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
-import { async } from "@firebase/util";
+
 
 const AboutUs = () => {
   const [alexAbout, setAlexAbout] = useState([]);
@@ -20,6 +21,8 @@ const AboutUs = () => {
   const [joshDesc, setJoshDesc] = useState('');
   const collectionRef = collection(db, 'alexAbout');
   const collectionRef1 = collection(db, 'joshAbout');
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageUrls, setImageUrls] = useState([]);
 
   useEffect(() => {
     const unsub = onSnapshot(collectionRef, (querySnapshot) => {
@@ -95,18 +98,41 @@ const AboutUs = () => {
     }
   }
 
+  const imagesListRef = ref(storage, "alexProfilePic/");
+
+  const uploadFile = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `profilePics/alexProfilePic`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrls((prev) => [...prev, url]);
+      });
+    });
+  };
+
+  useEffect(() => {
+    listAll(imagesListRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageUrls((prev) => [...prev, url]);
+        });
+      });
+    });
+  }, []);
+
   if (auth.currentUser == null) {
     return (
       <>
-        <AboutAlexWrapper>
+        <AboutAlexWrapper>     
           <div>
-            <img src="./portland.png" alt="Alex Portrait" title="Alex Portrait" />
+            <img src="./portland.png" alt="Josh Portrait" title="Josh Portrait" />
           </div>
-            {alexAbout.map((alexAbout) => (
-              <AlexInfo key={alexAbout.id}>
-                {alexAbout.alexDesc}
-              </AlexInfo>
-            ))}
+          {alexAbout.map((alexAbout) => (
+            <AlexInfo key={alexAbout.id}>
+              {alexAbout.alexDesc}
+            </AlexInfo>
+          ))}
+     
         </AboutAlexWrapper>
         <AboutJoshWrapper>
           {joshAbout.map((joshAbout) => (
@@ -114,9 +140,9 @@ const AboutUs = () => {
               {joshAbout.joshDesc}
             </JoshInfo>
           ))}
-          <div>
-            <img src="./portland.png" alt="Alex Portrait" title="Alex Portrait" />
-          </div>
+
+            <ProfileImg src="./JoshMVMTProfile.jpg" alt="Alex Portrait" title="Alex Portrait" />
+
         </AboutJoshWrapper>
         
       </>
@@ -129,16 +155,32 @@ const AboutUs = () => {
             <StyledButton onClick={() => addAlexAbout()}>Submit</StyledButton>
       </AboutContainer>
         <AboutAlexWrapper>
-          <div>
-            <img src="./portland.png" alt="Alex Portrait" title="Alex Portrait" />
-          </div>
+          <StyledButton onClick={uploadFile}>Upload</StyledButton>
           <AlexInfo>
+          <div>
+            {/* <input
+              type="file"
+              onChange={(event) => {
+                setImageUpload(event.target.files[0]);
+              }}
+            /> */}
+            <StyledButton onClick={() => deleteAlexAbout(alexAbout)}>Delete</StyledButton>
+            {/* {imageUrls.map((url) => {
+              return (
+                <>
+                <RateCardContainer>
+                  <RateCardImg src={url} />
+                </RateCardContainer>
+                </>
+              );
+            })} */}
+          </div>
+          <div>
+            <img src="./portland.png" alt="Josh Portrait" title="Josh Portrait" />
+          </div>
             {alexAbout.map((alexAbout) => (
               <div key={alexAbout.id}>
                 {alexAbout.alexDesc}
-                <div>
-                  <StyledButton onClick={() => deleteAlexAbout(alexAbout)}>Delete</StyledButton>
-                </div>
               </div>
             ))}
           </AlexInfo>
@@ -158,9 +200,9 @@ const AboutUs = () => {
               </div>
             ))}
           </JoshInfo>
-          <div>
-            <img src="./portland.png" alt="Josh Portrait" title="Josh Portrait" />
-          </div>
+
+            <ProfileImg src="./JoshMVMTProfile.jpg" alt="Josh Portrait" title="Josh Portrait" />
+          
         </AboutJoshWrapper>
         
       </>
@@ -239,9 +281,30 @@ margin-top: 1em;
 width: 6rem;
 `
 
+const RateCardContainer = styled.div`
+margin-top: 20px;
+display: flex;
+justify-content: center;
+`
+
+const RateCardImg = styled.img`
+width: 100%;
+height: auto;
+@media (min-width: 699px) {
+  width: 80%;
+}
+`
+
 const AboutContainer = styled.div`
     display: flex;
     flex-direction: column;
+`
+const ProfileImg = styled.img`
+  height: auto;
+  width: 250px;
+  @media (max-width: 599px) {
+    width: 99%;
+  }
 `
 
 export default AboutUs;

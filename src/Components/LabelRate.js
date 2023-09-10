@@ -101,7 +101,6 @@ const IndieRate = () => {
   if (auth.currentUser == null) {
     return (
       <>
-      
       {imageUrls.map((url) => {
         return(
       <RateCardContainer>
@@ -136,21 +135,6 @@ const IndieRate = () => {
     </>
   )
 }
-
-const StyledTextArea = styled.textarea`
-  border: solid light-gray 2px;
-  &:focus {
-    outline: none;
-    border: 2px solid black;
-  }
-  height: 2.5rem;
-  padding: .5rem;
-  outline: none;
-  width: 50vw;
-  @media (max-width: 700px) {
-    width: 80vw;
-  }
-`
 
 const StyledButton = styled.button`
 border: solid white 1px;
