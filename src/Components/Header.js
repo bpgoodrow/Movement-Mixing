@@ -107,9 +107,9 @@ import { RxHamburgerMenu } from 'react-icons/rx'
 
   const MovementMixingLogo = styled.img`
   cursor: pointer;
-    width: 250px;
+    width: 300px;
     @media (max-width: 699px) {
-      width: 100px;
+      width: 200px;
     }
   `
 
@@ -172,16 +172,16 @@ const Header = ({ handleScroll }) => {
   return (
       <HeaderContainer>
         <div onClick={refreshPage}>
-          <MovementMixingLogo src="./MVMT Color REV.png" alt="Movement Mixing Logo" />
+          <MovementMixingLogo src="./Logo.png" alt="Movement Mixing Logo" />
         </div>
         <HeaderTitleAndLinksContainer>
           <HeaderLinkContainer>
             <HomeLink to="/" onClick={handleHomeClick}homeActive={homeActive}>
               <StyledLink to="/">Home</StyledLink>
             </HomeLink>
-            <AboutLink to="/about" onClick={handleAboutClick}aboutActive={aboutActive}>
+            {/* <AboutLink to="/about" onClick={handleAboutClick}aboutActive={aboutActive}>
               <StyledLink to="/about">About</StyledLink>
-            </AboutLink>
+            </AboutLink> */}
             {/* <FaqLink to="/faq" onClick={handleFaqClick} faqActive={faqActive}>
               <StyledLink to="/faq">FAQ</StyledLink>
             </FaqLink> */}
@@ -196,15 +196,15 @@ const Header = ({ handleScroll }) => {
           {toggle && (
             <>
 
-                <FaqLink to="/faq" onClick={handleFaqClick} faqActive={faqActive}>
+                {/* <FaqLink to="/faq" onClick={handleFaqClick} faqActive={faqActive}>
                   <StyledLink to="/faq">FAQ</StyledLink>
-                </FaqLink>
+                </FaqLink> */}
                 <ContactLink onClick={handleContactClick} contactActive={contactActive}>
                   <StyledLink onClick={handleScroll}>Contact</StyledLink>
                 </ContactLink>
-                <AboutLink to ="/about" onClick={handleAboutClick} aboutActive={aboutActive}>
+                {/* <AboutLink to ="/about" onClick={handleAboutClick} aboutActive={aboutActive}>
                   <StyledLink to="/about">About</StyledLink>
-                </AboutLink>
+                </AboutLink> */}
                 <HomeLink to="/" onClick={handleHomeClick}homeActive={homeActive}>
                   <StyledLink to="/">Home</StyledLink>
                 </HomeLink>

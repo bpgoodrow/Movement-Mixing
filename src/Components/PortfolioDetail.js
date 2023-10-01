@@ -145,27 +145,27 @@ const PortfolioDetail = (props) => {
               {portfolioItem.masteredBy}
             </ContainerItem>
             <ContainerItem>
-              <LinkIcon href={portfolioItem.spotify} target="_blank">
-                {
-                  portfolioItem.spotify == undefined
-                  ? <div>{null}</div>
-                  : <div>{spotify}</div>
-                }
-              </LinkIcon>
-              <LinkIcon href={portfolioItem.appleMusic} target="_blank">
+            <LinkIcon href={portfolioItem.appleMusic} target="_blank">
                 {
                   portfolioItem.spotify == undefined
                   ? <div>{null}</div>
                   :<div>{appleMusic}</div>
                 }
                 </LinkIcon>
+              {/* <LinkIcon href={portfolioItem.spotify} target="_blank">
+                {
+                  portfolioItem.spotify == undefined
+                  ? <div>{null}</div>
+                  : <div>{spotify}</div>
+                }
+              </LinkIcon>
               <LinkIcon href={portfolioItem.tidal} target="_blank">
                 {
                   portfolioItem.tidal == undefined
                   ? <div>{null}</div>
                   : <div>{tidal}</div>
                 }
-              </LinkIcon>
+              </LinkIcon> */}
             </ContainerItem>
             {visibleButtons ? null : <button onClick={props.onClickingEdit }>Update Item</button>}
             {visibleButtons ? null : <button onClick={()=> onClickingDelete(portfolioItem.id)}>Delete</button>}
@@ -190,9 +190,9 @@ const PortfolioDetail = (props) => {
             <InfoItem>Produced By {portfolioItem.producedBy}</InfoItem>
             <InfoItem>Mixed By {portfolioItem.mixedBy}</InfoItem>
             <div>
-              <LinkIcon href={portfolioItem.spotify} target="_blank"><FaSpotify color="white" size={35}/></LinkIcon>
               <LinkIcon href={portfolioItem.appleMusic} target="_blank"><FaApple color="white" size={39}/></LinkIcon>
-              <LinkIcon href={portfolioItem.tidal} target="_blank"><SiTidal color="white" size={35}/></LinkIcon>
+              {/* <LinkIcon href={portfolioItem.spotify} target="_blank"><FaSpotify color="white" size={35}/></LinkIcon>
+              <LinkIcon href={portfolioItem.tidal} target="_blank"><SiTidal color="white" size={35}/></LinkIcon> */}
             </div>
             <StyledButton onClick={props.onClickingEdit }>Update Item</StyledButton>
             <StyledButton onClick={()=> onClickingDelete(portfolioItem.id)}>Delete</StyledButton>
