@@ -82,7 +82,6 @@ const PortfolioDetail = (props) => {
   const [appleMusic, setAppleMusic] = useState([<FaApple color="white" size={37}/>, null])
   const [tidal, setTidal] = useState([<SiTidal color = "white" size={43}/>, null])
 
-
   if (auth.currentUser == null) {
     let visibleButtons = !null;
     console.log(auth.currentUser, "auth", visibleButtons);
@@ -112,37 +111,29 @@ const PortfolioDetail = (props) => {
                 {
                   portfolioItem.artistName == undefined
                   ? <div>{null}</div>
-                  : <div>{artist}</div>
+                  : <div>{portfolioItem.artistName}</div>
                 }
-              &nbsp;
-              {portfolioItem.artistName}
             </ContainerItem>
             <ContainerItem>
               {
                 portfolioItem.producedBy == undefined
                 ? <div>{null}</div>
-                : <div>{producedBy}</div>
+                : <div>{portfolioItem.producedBy}</div>
               }
-              &nbsp;
-              {portfolioItem.producedBy}
             </ContainerItem>
             <ContainerItem>
               {
                 portfolioItem.mixedBy == undefined
                 ? <div>{null}</div>
-                : <div>{mixedBy}</div>
+                : <div>{portfolioItem.mixedBy}</div>
               }
-              &nbsp;
-              {portfolioItem.mixedBy}
             </ContainerItem>
             <ContainerItem>
               {
                 portfolioItem.masteredBy == undefined
                 ? <div>{null}</div>
-                : <div>{masteredBy}</div>
+                : <div>{portfolioItem.masteredBy}</div>
               }
-              &nbsp;
-              {portfolioItem.masteredBy}
             </ContainerItem>
             <ContainerItem>
             <LinkIcon href={portfolioItem.appleMusic} target="_blank">
@@ -183,12 +174,12 @@ const PortfolioDetail = (props) => {
         <DetailContainer>
           <AlbumImage src={portfolioItem.albumCover} />
           <InfoContainer>
-            <InfoItem>Artist {portfolioItem.artistName}</InfoItem>
-            <InfoItem>Album {portfolioItem.albumName}</InfoItem>
-            <InfoItem>Song {portfolioItem.songName}</InfoItem>
-            <InfoItem>Mastered By {portfolioItem.masteredBy}</InfoItem>
-            <InfoItem>Produced By {portfolioItem.producedBy}</InfoItem>
-            <InfoItem>Mixed By {portfolioItem.mixedBy}</InfoItem>
+            <InfoItem>{portfolioItem.artistName}</InfoItem>
+            <InfoItem>{portfolioItem.albumName}</InfoItem>
+            <InfoItem>{portfolioItem.songName}</InfoItem>
+            <InfoItem>{portfolioItem.masteredBy}</InfoItem>
+            <InfoItem>{portfolioItem.producedBy}</InfoItem>
+            <InfoItem>{portfolioItem.mixedBy}</InfoItem>
             <div>
               <LinkIcon href={portfolioItem.appleMusic} target="_blank"><FaApple color="white" size={39}/></LinkIcon>
               {/* <LinkIcon href={portfolioItem.spotify} target="_blank"><FaSpotify color="white" size={35}/></LinkIcon>
