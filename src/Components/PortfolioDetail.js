@@ -91,28 +91,39 @@ const PortfolioDetail = (props) => {
         <DetailContainer>
           <AlbumImage src={portfolioItem.albumCover} />
           <InfoContainer>
-            {/* <ContainerItem>
-              {portfolioItem.artistName}
-              &nbsp;
-              |
-              &nbsp;
-              {portfolioItem.albumName}
-            </ContainerItem> */}
-            <ContainerItem>
-                {/* {
-                  portfolioItem.songName == undefined
-                  ? <div>{null}</div>
-                  : <div>{}</div>
-                }
-              &nbsp; */}
-              {portfolioItem.songName}
-            </ContainerItem>
             <ContainerItem>
                 {
                   portfolioItem.artistName == undefined
                   ? <div>{null}</div>
                   : <div>{portfolioItem.artistName}</div>
                 }
+              &nbsp;
+              
+            </ContainerItem>
+            <ContainerItem>
+                {
+                  portfolioItem.albumName == undefined
+                  ? <div>{null}</div>
+                  : <div>{portfolioItem.albumName}</div>
+                }
+              &nbsp;
+              
+            </ContainerItem>
+            <ContainerItem>
+                {
+                  portfolioItem.songName == undefined
+                  ? <div>{null}</div>
+                  : <div>{portfolioItem.songName}</div>
+                }
+              &nbsp;
+              
+            </ContainerItem>
+            <ContainerItem>
+              {
+                portfolioItem.masteredBy == undefined
+                ? <div>{null}</div>
+                : <div>{portfolioItem.masteredBy}</div>
+              }
             </ContainerItem>
             <ContainerItem>
               {
@@ -126,13 +137,6 @@ const PortfolioDetail = (props) => {
                 portfolioItem.mixedBy == undefined
                 ? <div>{null}</div>
                 : <div>{portfolioItem.mixedBy}</div>
-              }
-            </ContainerItem>
-            <ContainerItem>
-              {
-                portfolioItem.masteredBy == undefined
-                ? <div>{null}</div>
-                : <div>{portfolioItem.masteredBy}</div>
               }
             </ContainerItem>
             <ContainerItem>
